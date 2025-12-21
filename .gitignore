@@ -1,0 +1,39 @@
+# .NET
+bin/
+obj/
+*.user
+*.userosscache
+*.suo
+*.cache
+*.dll
+*.exe
+*.pdb
+
+# Visual Studio
+.vs/
+*.vsidx
+*.lock.json
+
+# Database
+*.mdf
+*.ldf
+
+# Rider
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Backup
+*.bak
+*~
+
+# NuGet
+packages/
