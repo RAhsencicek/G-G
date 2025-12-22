@@ -27,6 +27,7 @@ namespace GreenGuard.Forms
             btnHome = new Button();
             lblLogo = new Label();
             panelMain = new Panel();
+            picWateringCan = new PictureBox();
             button4 = new Button();
             textBox1 = new TextBox();
             button14 = new Button();
@@ -44,6 +45,7 @@ namespace GreenGuard.Forms
             button1 = new Button();
             panelTopBar.SuspendLayout();
             panelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picWateringCan).BeginInit();
             SuspendLayout();
             // 
             // panelTopBar
@@ -169,6 +171,7 @@ namespace GreenGuard.Forms
             panelMain.BackColor = Color.Transparent;
             panelMain.BackgroundImage = (Image)resources.GetObject("panelMain.BackgroundImage");
             panelMain.BackgroundImageLayout = ImageLayout.Stretch;
+            panelMain.Controls.Add(picWateringCan);
             panelMain.Controls.Add(button4);
             panelMain.Controls.Add(textBox1);
             panelMain.Controls.Add(button14);
@@ -189,6 +192,19 @@ namespace GreenGuard.Forms
             panelMain.Name = "panelMain";
             panelMain.Size = new Size(1450, 901);
             panelMain.TabIndex = 1;
+            // 
+            // picWateringCan
+            // 
+            picWateringCan.BackColor = Color.Transparent;
+            picWateringCan.BackgroundImage = (Image)resources.GetObject("picWateringCan.BackgroundImage");
+            picWateringCan.BackgroundImageLayout = ImageLayout.Stretch;
+            picWateringCan.Cursor = Cursors.Hand;
+            picWateringCan.Location = new Point(253, 798);
+            picWateringCan.Name = "picWateringCan";
+            picWateringCan.Size = new Size(140, 100);
+            picWateringCan.SizeMode = PictureBoxSizeMode.Zoom;
+            picWateringCan.TabIndex = 20;
+            picWateringCan.TabStop = false;
             // 
             // button4
             // 
@@ -350,6 +366,7 @@ namespace GreenGuard.Forms
             ClientSize = new Size(1450, 961);
             Controls.Add(panelMain);
             Controls.Add(panelTopBar);
+            DoubleBuffered = true;
             Name = "DashboardForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GreenGuard - Dashboard";
@@ -358,6 +375,7 @@ namespace GreenGuard.Forms
             panelTopBar.ResumeLayout(false);
             panelMain.ResumeLayout(false);
             panelMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picWateringCan).EndInit();
             ResumeLayout(false);
         }
 
@@ -387,5 +405,6 @@ namespace GreenGuard.Forms
         private Button button5;
         private Button button4;
         private TextBox textBox1;
+        private PictureBox picWateringCan;
     }
 }
