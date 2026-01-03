@@ -1,3 +1,4 @@
+using System.IO;
 using DevExpress.XtraEditors;
 using GreenGuard.Data;
 using GreenGuard.Models;
@@ -9,15 +10,20 @@ namespace GreenGuard.Forms
     public partial class PlantEditForm : DevExpress.XtraEditors.XtraForm
     {
         private readonly GreenGuardDbContext _context;
+        private readonly ReminderService _reminderService;
         private Plant? _plant;
         private bool _isEdit;
         private int? _slotNumber;
+        private string? _selectedPhotoPath;
+        private readonly string _pixelArtPath;
 
         public PlantEditForm(Plant? plant = null)
         {
             _context = new GreenGuardDbContext();
+            _reminderService = new ReminderService(_context);
             _plant = plant;
             _isEdit = plant != null;
+            _pixelArtPath = Path.Combine(Application.StartupPath, "..", "..", "..", "Resources", "PixelPlants");
 
             InitializeComponent();
         }
@@ -52,6 +58,7 @@ namespace GreenGuard.Forms
             }
 
             LoadPlantTypes();
+            LoadPixelArtGallery();
 
             if (_isEdit && _plant != null)
             {
@@ -92,6 +99,13 @@ namespace GreenGuard.Forms
                 var index = cmbPlantType.Properties.Items.IndexOf(typeText);
                 if (index >= 0) cmbPlantType.SelectedIndex = index;
             }
+
+            // Mevcut resmi yükle
+            if (!string.IsNullOrEmpty(_plant.PhotoPath))
+            {
+                _selectedPhotoPath = _plant.PhotoPath;
+                LoadPreviewImage(_selectedPhotoPath);
+            }
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -127,6 +141,7 @@ namespace GreenGuard.Forms
                     _plant.Notes = txtNotes.Text;
                     _plant.AcquiredDate = (DateTime)dateAcquired.EditValue;
                     _plant.PlantTypeId = plantType?.Id ?? 1;
+                    _plant.PhotoPath = _selectedPhotoPath;
 
                     _context.Plants.Update(_plant);
                 }
@@ -144,7 +159,8 @@ namespace GreenGuard.Forms
                         UserId = AuthService.CurrentUser!.Id,
                         CreatedAt = DateTime.Now,
                         HealthScore = 100,
-                        SlotNumber = _slotNumber  // Dashboard slot numarası
+                        SlotNumber = _slotNumber,  // Dashboard slot numarası
+                        PhotoPath = _selectedPhotoPath
                     };
 
                     _context.Plants.Add(newPlant);
@@ -184,6 +200,9 @@ namespace GreenGuard.Forms
             _context.CareLogs.Add(careLog);
 
             await _context.SaveChangesAsync();
+            
+            // Hatırlatmayı tamamlandı olarak işaretle
+            await _reminderService.OnPlantCaredAsync(_plant.Id, ReminderType.Watering);
 
             XtraMessageBox.Show("Sulama kaydedildi! 💧", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -204,6 +223,9 @@ namespace GreenGuard.Forms
             _context.CareLogs.Add(careLog);
 
             await _context.SaveChangesAsync();
+            
+            // Hatırlatmayı tamamlandı olarak işaretle
+            await _reminderService.OnPlantCaredAsync(_plant.Id, ReminderType.Fertilizing);
 
             XtraMessageBox.Show("Gübreleme kaydedildi! 🌱", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -219,5 +241,166 @@ namespace GreenGuard.Forms
             base.OnFormClosing(e);
             _context.Dispose();
         }
+
+        #region Pixel Art Gallery
+
+        /// <summary>
+        /// Mevcut pixel art resimlerini galeriye yükler
+        /// </summary>
+        private void LoadPixelArtGallery()
+        {
+            panelGallery.Controls.Clear();
+
+            if (!Directory.Exists(_pixelArtPath)) return;
+
+            // Kullanılabilir pixel art dosyaları (özel olanları hariç tut)
+            var excludeFiles = new[] { "water_drop.png", "watering_can.png", "gardener_avatar.png", "plants_set.png" };
+            var imageFiles = Directory.GetFiles(_pixelArtPath, "*.png")
+                .Where(f => !excludeFiles.Contains(Path.GetFileName(f)))
+                .ToList();
+
+            foreach (var imagePath in imageFiles)
+            {
+                var thumbnail = CreateGalleryThumbnail(imagePath);
+                panelGallery.Controls.Add(thumbnail);
+            }
+        }
+
+        /// <summary>
+        /// Galeri için küçük resim oluşturur
+        /// </summary>
+        private PictureBox CreateGalleryThumbnail(string imagePath)
+        {
+            var pic = new PictureBox
+            {
+                Size = new Size(70, 70),
+                Margin = new Padding(5),
+                SizeMode = PictureBoxSizeMode.Zoom,
+                BackColor = Color.FromArgb(50, 80, 60),
+                Cursor = Cursors.Hand,
+                Tag = imagePath,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+
+            try
+            {
+                pic.Image = Image.FromFile(imagePath);
+            }
+            catch
+            {
+                pic.BackColor = Color.Gray;
+            }
+
+            // Tıklama olayı
+            pic.Click += (s, e) =>
+            {
+                _selectedPhotoPath = imagePath;
+                LoadPreviewImage(imagePath);
+                HighlightSelectedThumbnail(pic);
+            };
+
+            // Hover efekti
+            pic.MouseEnter += (s, e) => pic.BackColor = Color.FromArgb(80, 120, 90);
+            pic.MouseLeave += (s, e) => 
+            {
+                if (pic.Tag?.ToString() == _selectedPhotoPath)
+                    pic.BackColor = Color.FromArgb(100, 180, 100);
+                else
+                    pic.BackColor = Color.FromArgb(50, 80, 60);
+            };
+
+            return pic;
+        }
+
+        /// <summary>
+        /// Seçilen thumbnail'ı vurgular
+        /// </summary>
+        private void HighlightSelectedThumbnail(PictureBox selected)
+        {
+            foreach (Control ctrl in panelGallery.Controls)
+            {
+                if (ctrl is PictureBox pic)
+                {
+                    pic.BackColor = pic == selected 
+                        ? Color.FromArgb(100, 180, 100) 
+                        : Color.FromArgb(50, 80, 60);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Önizleme resmini yükler
+        /// </summary>
+        private void LoadPreviewImage(string imagePath)
+        {
+            try
+            {
+                if (File.Exists(imagePath))
+                {
+                    picPreview.Image?.Dispose();
+                    picPreview.Image = Image.FromFile(imagePath);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Önizleme hatası: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Kullanıcıdan özel resim seçmesini sağlar
+        /// </summary>
+        private void btnSelectImage_Click(object sender, EventArgs e)
+        {
+            using var openFileDialog = new OpenFileDialog
+            {
+                Title = "Bitki Resmi Seç",
+                Filter = "Resim Dosyaları|*.png;*.jpg;*.jpeg;*.bmp;*.gif|Tüm Dosyalar|*.*",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // UserPlants klasörünü oluştur
+                    var userPlantsPath = Path.Combine(Application.StartupPath, "..", "..", "..", "Resources", "UserPlants");
+                    if (!Directory.Exists(userPlantsPath))
+                    {
+                        Directory.CreateDirectory(userPlantsPath);
+                    }
+
+                    // Benzersiz dosya adı oluştur
+                    var fileName = $"plant_{DateTime.Now:yyyyMMdd_HHmmss}_{Path.GetFileName(openFileDialog.FileName)}";
+                    var destinationPath = Path.Combine(userPlantsPath, fileName);
+
+                    // Dosyayı kopyala
+                    File.Copy(openFileDialog.FileName, destinationPath, true);
+
+                    // Seçilen resmi ayarla
+                    _selectedPhotoPath = destinationPath;
+                    LoadPreviewImage(destinationPath);
+
+                    // Galeri seçimini temizle
+                    foreach (Control ctrl in panelGallery.Controls)
+                    {
+                        if (ctrl is PictureBox pic)
+                        {
+                            pic.BackColor = Color.FromArgb(50, 80, 60);
+                        }
+                    }
+
+                    XtraMessageBox.Show("Resim başarıyla yüklendi! 🖼️", "Başarılı", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show($"Resim yüklenirken hata oluştu: {ex.Message}", "Hata", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        #endregion
     }
 }

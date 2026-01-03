@@ -4,6 +4,7 @@ using GreenGuard.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GreenGuard.Migrations
 {
     [DbContext(typeof(GreenGuardDbContext))]
-    partial class GreenGuardDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251224131721_AddUserReminders")]
+    partial class AddUserReminders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,9 +145,6 @@ namespace GreenGuard.Migrations
                     b.Property<int>("OptimalFertilizingDays")
                         .HasColumnType("int");
 
-                    b.Property<int>("OptimalPruningDays")
-                        .HasColumnType("int");
-
                     b.Property<int>("OptimalWateringDays")
                         .HasColumnType("int");
 
@@ -170,7 +170,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 15,
                             Name = "Orkide",
                             OptimalFertilizingDays = 30,
-                            OptimalPruningDays = 45,
                             OptimalWateringDays = 7,
                             ScientificName = "Orchidaceae",
                             SunlightNeed = "Orta"
@@ -184,7 +183,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 18,
                             Name = "Monstera",
                             OptimalFertilizingDays = 14,
-                            OptimalPruningDays = 30,
                             OptimalWateringDays = 7,
                             ScientificName = "Monstera deliciosa",
                             SunlightNeed = "Orta"
@@ -198,7 +196,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 15,
                             Name = "Kauçuk",
                             OptimalFertilizingDays = 30,
-                            OptimalPruningDays = 45,
                             OptimalWateringDays = 10,
                             ScientificName = "Ficus elastica",
                             SunlightNeed = "Orta"
@@ -212,7 +209,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 15,
                             Name = "Barış Zambağı",
                             OptimalFertilizingDays = 30,
-                            OptimalPruningDays = 30,
                             OptimalWateringDays = 5,
                             ScientificName = "Spathiphyllum",
                             SunlightNeed = "Az"
@@ -226,7 +222,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 10,
                             Name = "Yılan Bitkisi",
                             OptimalFertilizingDays = 60,
-                            OptimalPruningDays = 60,
                             OptimalWateringDays = 14,
                             ScientificName = "Sansevieria",
                             SunlightNeed = "Az"
@@ -240,7 +235,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 10,
                             Name = "Aloe Vera",
                             OptimalFertilizingDays = 60,
-                            OptimalPruningDays = 45,
                             OptimalWateringDays = 14,
                             ScientificName = "Aloe barbadensis",
                             SunlightNeed = "Çok"
@@ -254,7 +248,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 15,
                             Name = "Pothos",
                             OptimalFertilizingDays = 30,
-                            OptimalPruningDays = 30,
                             OptimalWateringDays = 7,
                             ScientificName = "Epipremnum aureum",
                             SunlightNeed = "Az"
@@ -268,7 +261,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 10,
                             Name = "Kaktüs",
                             OptimalFertilizingDays = 60,
-                            OptimalPruningDays = 90,
                             OptimalWateringDays = 21,
                             ScientificName = "Cactaceae",
                             SunlightNeed = "Çok"
@@ -282,7 +274,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 15,
                             Name = "Zamioculcas",
                             OptimalFertilizingDays = 60,
-                            OptimalPruningDays = 60,
                             OptimalWateringDays = 14,
                             ScientificName = "Zamioculcas zamiifolia",
                             SunlightNeed = "Az"
@@ -296,7 +287,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 15,
                             Name = "Filodendron",
                             OptimalFertilizingDays = 30,
-                            OptimalPruningDays = 30,
                             OptimalWateringDays = 7,
                             ScientificName = "Philodendron",
                             SunlightNeed = "Orta"
@@ -310,7 +300,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 5,
                             Name = "Gül",
                             OptimalFertilizingDays = 14,
-                            OptimalPruningDays = 21,
                             OptimalWateringDays = 3,
                             ScientificName = "Rosa",
                             SunlightNeed = "Çok"
@@ -324,7 +313,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 5,
                             Name = "Lavanta",
                             OptimalFertilizingDays = 30,
-                            OptimalPruningDays = 30,
                             OptimalWateringDays = 7,
                             ScientificName = "Lavandula",
                             SunlightNeed = "Çok"
@@ -338,7 +326,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 5,
                             Name = "Ortanca",
                             OptimalFertilizingDays = 14,
-                            OptimalPruningDays = 30,
                             OptimalWateringDays = 3,
                             ScientificName = "Hydrangea",
                             SunlightNeed = "Orta"
@@ -352,7 +339,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 10,
                             Name = "Sardunya",
                             OptimalFertilizingDays = 14,
-                            OptimalPruningDays = 21,
                             OptimalWateringDays = 3,
                             ScientificName = "Pelargonium",
                             SunlightNeed = "Çok"
@@ -366,7 +352,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 5,
                             Name = "Menekşe",
                             OptimalFertilizingDays = 21,
-                            OptimalPruningDays = 21,
                             OptimalWateringDays = 3,
                             ScientificName = "Viola",
                             SunlightNeed = "Orta"
@@ -380,7 +365,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 15,
                             Name = "Domates",
                             OptimalFertilizingDays = 14,
-                            OptimalPruningDays = 15,
                             OptimalWateringDays = 2,
                             ScientificName = "Solanum lycopersicum",
                             SunlightNeed = "Çok"
@@ -394,7 +378,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 15,
                             Name = "Biber",
                             OptimalFertilizingDays = 14,
-                            OptimalPruningDays = 15,
                             OptimalWateringDays = 2,
                             ScientificName = "Capsicum",
                             SunlightNeed = "Çok"
@@ -408,7 +391,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 15,
                             Name = "Salatalık",
                             OptimalFertilizingDays = 14,
-                            OptimalPruningDays = 15,
                             OptimalWateringDays = 2,
                             ScientificName = "Cucumis sativus",
                             SunlightNeed = "Çok"
@@ -422,7 +404,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 10,
                             Name = "Marul",
                             OptimalFertilizingDays = 21,
-                            OptimalPruningDays = 14,
                             OptimalWateringDays = 2,
                             ScientificName = "Lactuca sativa",
                             SunlightNeed = "Orta"
@@ -436,7 +417,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 10,
                             Name = "Havuç",
                             OptimalFertilizingDays = 21,
-                            OptimalPruningDays = 21,
                             OptimalWateringDays = 3,
                             ScientificName = "Daucus carota",
                             SunlightNeed = "Çok"
@@ -450,7 +430,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 15,
                             Name = "Fesleğen",
                             OptimalFertilizingDays = 21,
-                            OptimalPruningDays = 14,
                             OptimalWateringDays = 2,
                             ScientificName = "Ocimum basilicum",
                             SunlightNeed = "Çok"
@@ -464,7 +443,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 10,
                             Name = "Nane",
                             OptimalFertilizingDays = 30,
-                            OptimalPruningDays = 14,
                             OptimalWateringDays = 2,
                             ScientificName = "Mentha",
                             SunlightNeed = "Orta"
@@ -478,7 +456,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 5,
                             Name = "Biberiye",
                             OptimalFertilizingDays = 30,
-                            OptimalPruningDays = 21,
                             OptimalWateringDays = 7,
                             ScientificName = "Rosmarinus officinalis",
                             SunlightNeed = "Çok"
@@ -492,7 +469,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 5,
                             Name = "Kekik",
                             OptimalFertilizingDays = 30,
-                            OptimalPruningDays = 21,
                             OptimalWateringDays = 7,
                             ScientificName = "Thymus vulgaris",
                             SunlightNeed = "Çok"
@@ -506,7 +482,6 @@ namespace GreenGuard.Migrations
                             MinTemperature = 10,
                             Name = "Maydanoz",
                             OptimalFertilizingDays = 21,
-                            OptimalPruningDays = 14,
                             OptimalWateringDays = 2,
                             ScientificName = "Petroselinum crispum",
                             SunlightNeed = "Orta"

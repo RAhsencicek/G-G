@@ -35,4 +35,11 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <!-- Resources klasörünü output'a kopyala -->
+  <ItemGroup>
+    <None Update="Resources\PixelPlants\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

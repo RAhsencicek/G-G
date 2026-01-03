@@ -35,6 +35,10 @@ namespace GreenGuard.Forms
             this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.lblName = new DevExpress.XtraEditors.LabelControl();
             this.lblTitle = new DevExpress.XtraEditors.LabelControl();
+            this.lblImageTitle = new DevExpress.XtraEditors.LabelControl();
+            this.picPreview = new System.Windows.Forms.PictureBox();
+            this.panelGallery = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSelectImage = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelMain)).BeginInit();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNotes.Properties)).BeginInit();
@@ -44,10 +48,15 @@ namespace GreenGuard.Forms
             ((System.ComponentModel.ISupportInitialize)(this.txtLocation.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNickname.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMain
             // 
+            this.panelMain.Controls.Add(this.btnSelectImage);
+            this.panelMain.Controls.Add(this.panelGallery);
+            this.panelMain.Controls.Add(this.picPreview);
+            this.panelMain.Controls.Add(this.lblImageTitle);
             this.panelMain.Controls.Add(this.btnCancel);
             this.panelMain.Controls.Add(this.btnSave);
             this.panelMain.Controls.Add(this.btnFertilize);
@@ -68,7 +77,7 @@ namespace GreenGuard.Forms
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(480, 600);
+            this.panelMain.Size = new System.Drawing.Size(750, 600);
             this.panelMain.TabIndex = 0;
             // 
             // lblTitle
@@ -265,11 +274,55 @@ namespace GreenGuard.Forms
             this.btnCancel.Text = "İptal";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // lblImageTitle
+            // 
+            this.lblImageTitle.Appearance.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblImageTitle.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
+            this.lblImageTitle.Appearance.Options.UseFont = true;
+            this.lblImageTitle.Appearance.Options.UseForeColor = true;
+            this.lblImageTitle.Location = new System.Drawing.Point(480, 15);
+            this.lblImageTitle.Name = "lblImageTitle";
+            this.lblImageTitle.Size = new System.Drawing.Size(100, 20);
+            this.lblImageTitle.TabIndex = 17;
+            this.lblImageTitle.Text = "🖼️ Bitki Resmi";
+            // 
+            // picPreview
+            // 
+            this.picPreview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(75)))), ((int)(((byte)(55)))));
+            this.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picPreview.Location = new System.Drawing.Point(510, 45);
+            this.picPreview.Name = "picPreview";
+            this.picPreview.Size = new System.Drawing.Size(200, 200);
+            this.picPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picPreview.TabIndex = 18;
+            this.picPreview.TabStop = false;
+            // 
+            // panelGallery
+            // 
+            this.panelGallery.AutoScroll = true;
+            this.panelGallery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(65)))), ((int)(((byte)(45)))));
+            this.panelGallery.Location = new System.Drawing.Point(480, 255);
+            this.panelGallery.Name = "panelGallery";
+            this.panelGallery.Padding = new System.Windows.Forms.Padding(5);
+            this.panelGallery.Size = new System.Drawing.Size(255, 250);
+            this.panelGallery.TabIndex = 19;
+            // 
+            // btnSelectImage
+            // 
+            this.btnSelectImage.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSelectImage.Appearance.Options.UseFont = true;
+            this.btnSelectImage.Location = new System.Drawing.Point(480, 515);
+            this.btnSelectImage.Name = "btnSelectImage";
+            this.btnSelectImage.Size = new System.Drawing.Size(255, 35);
+            this.btnSelectImage.TabIndex = 20;
+            this.btnSelectImage.Text = "📁 Kendi Resmimi Yükle...";
+            this.btnSelectImage.Click += new System.EventHandler(this.btnSelectImage_Click);
+            // 
             // PlantEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(480, 600);
+            this.ClientSize = new System.Drawing.Size(750, 600);
             this.Controls.Add(this.panelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -288,6 +341,7 @@ namespace GreenGuard.Forms
             ((System.ComponentModel.ISupportInitialize)(this.txtLocation.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNickname.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPreview)).EndInit();
             this.ResumeLayout(false);
         }
 
@@ -311,5 +365,9 @@ namespace GreenGuard.Forms
         private DevExpress.XtraEditors.SimpleButton btnFertilize;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.LabelControl lblImageTitle;
+        private System.Windows.Forms.PictureBox picPreview;
+        private System.Windows.Forms.FlowLayoutPanel panelGallery;
+        private DevExpress.XtraEditors.SimpleButton btnSelectImage;
     }
 }

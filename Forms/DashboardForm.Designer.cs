@@ -19,17 +19,25 @@ namespace GreenGuard.Forms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardForm));
             panelTopBar = new Panel();
+            label3 = new Label();
+            button15 = new Button();
             btnLogout = new Button();
             btnHealthAnalysis = new Button();
             btnCalendar = new Button();
             btnAddPlant = new Button();
             btnPlants = new Button();
+            button16 = new Button();
             btnHome = new Button();
             lblLogo = new Label();
+            pictureBox3 = new PictureBox();
             panelMain = new Panel();
+            label2 = new Label();
+            button17 = new Button();
+            label1 = new Label();
+            btnRefresh = new Button();
+            checkedListBox1 = new CheckedListBox();
             picWateringCan = new PictureBox();
             button4 = new Button();
-            textBox1 = new TextBox();
             button14 = new Button();
             button13 = new Button();
             button12 = new Button();
@@ -43,26 +51,59 @@ namespace GreenGuard.Forms
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
+            pictureBox1 = new PictureBox();
+            pictureBox2 = new PictureBox();
             panelTopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picWateringCan).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // panelTopBar
             // 
             panelTopBar.BackColor = Color.FromArgb(143, 188, 143);
+            panelTopBar.Controls.Add(label3);
+            panelTopBar.Controls.Add(button15);
             panelTopBar.Controls.Add(btnLogout);
+            panelTopBar.Controls.Add(btnRefresh);
             panelTopBar.Controls.Add(btnHealthAnalysis);
             panelTopBar.Controls.Add(btnCalendar);
             panelTopBar.Controls.Add(btnAddPlant);
             panelTopBar.Controls.Add(btnPlants);
+            panelTopBar.Controls.Add(button16);
             panelTopBar.Controls.Add(btnHome);
             panelTopBar.Controls.Add(lblLogo);
+            panelTopBar.Controls.Add(pictureBox3);
             panelTopBar.Dock = DockStyle.Top;
             panelTopBar.Location = new Point(0, 0);
             panelTopBar.Name = "panelTopBar";
             panelTopBar.Size = new Size(1450, 60);
             panelTopBar.TabIndex = 0;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.White;
+            label3.Font = new Font("Microsoft JhengHei", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Green;
+            label3.Image = (Image)resources.GetObject("label3.Image");
+            label3.ImageAlign = ContentAlignment.BottomCenter;
+            label3.Location = new Point(948, 12);
+            label3.Name = "label3";
+            label3.Size = new Size(86, 19);
+            label3.TabIndex = 29;
+            label3.Text = "BİGİ'ye sor";
+            // 
+            // button15
+            // 
+            button15.Location = new Point(800, 131);
+            button15.Name = "button15";
+            button15.Size = new Size(75, 23);
+            button15.TabIndex = 7;
+            button15.Text = "button15";
+            button15.UseVisualStyleBackColor = true;
             // 
             // btnLogout
             // 
@@ -72,7 +113,7 @@ namespace GreenGuard.Forms
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.Font = new Font("Segoe UI", 10F);
             btnLogout.ForeColor = Color.FromArgb(120, 50, 50);
-            btnLogout.Location = new Point(1330, 12);
+            btnLogout.Location = new Point(1206, 12);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(105, 36);
             btnLogout.TabIndex = 6;
@@ -140,6 +181,19 @@ namespace GreenGuard.Forms
             btnPlants.UseVisualStyleBackColor = false;
             btnPlants.Click += btnPlants_Click;
             // 
+            // button16
+            // 
+            button16.BackColor = Color.Transparent;
+            button16.BackgroundImage = (Image)resources.GetObject("button16.BackgroundImage");
+            button16.BackgroundImageLayout = ImageLayout.Stretch;
+            button16.ForeColor = Color.DeepPink;
+            button16.Location = new Point(865, 0);
+            button16.Name = "button16";
+            button16.Size = new Size(65, 60);
+            button16.TabIndex = 8;
+            button16.UseVisualStyleBackColor = false;
+            button16.Click += button16_Click;
+            // 
             // btnHome
             // 
             btnHome.BackColor = Color.FromArgb(172, 225, 175);
@@ -166,14 +220,27 @@ namespace GreenGuard.Forms
             lblLogo.Text = "🌱 GreenGuard";
             lblLogo.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // pictureBox3
+            // 
+            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
+            pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox3.Location = new Point(936, 6);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(112, 48);
+            pictureBox3.TabIndex = 29;
+            pictureBox3.TabStop = false;
+            // 
             // panelMain
             // 
             panelMain.BackColor = Color.Transparent;
             panelMain.BackgroundImage = (Image)resources.GetObject("panelMain.BackgroundImage");
             panelMain.BackgroundImageLayout = ImageLayout.Stretch;
+            panelMain.Controls.Add(label2);
+            panelMain.Controls.Add(button17);
+            panelMain.Controls.Add(label1);
+            panelMain.Controls.Add(checkedListBox1);
             panelMain.Controls.Add(picWateringCan);
             panelMain.Controls.Add(button4);
-            panelMain.Controls.Add(textBox1);
             panelMain.Controls.Add(button14);
             panelMain.Controls.Add(button13);
             panelMain.Controls.Add(button12);
@@ -187,11 +254,76 @@ namespace GreenGuard.Forms
             panelMain.Controls.Add(button3);
             panelMain.Controls.Add(button2);
             panelMain.Controls.Add(button1);
+            panelMain.Controls.Add(pictureBox1);
+            panelMain.Controls.Add(pictureBox2);
             panelMain.Dock = DockStyle.Fill;
             panelMain.Location = new Point(0, 60);
             panelMain.Name = "panelMain";
             panelMain.Size = new Size(1450, 901);
             panelMain.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.White;
+            label2.Font = new Font("Ink Free", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Image = (Image)resources.GetObject("label2.Image");
+            label2.ImageAlign = ContentAlignment.BottomCenter;
+            label2.Location = new Point(948, 407);
+            label2.Name = "label2";
+            label2.Size = new Size(192, 69);
+            label2.TabIndex = 27;
+            label2.Text = "bitkiler dünyasından \r\n    yeni haberler\r\n      alabilirsin\r\n";
+            // 
+            // button17
+            // 
+            button17.BackColor = Color.Transparent;
+            button17.ForeColor = Color.DarkCyan;
+            button17.Location = new Point(976, 488);
+            button17.Name = "button17";
+            button17.Size = new Size(130, 28);
+            button17.TabIndex = 28;
+            button17.Text = "Daha fazlası için tıkla";
+            button17.UseVisualStyleBackColor = false;
+            button17.Click += button17_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.White;
+            label1.Font = new Font("Ink Free", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Image = (Image)resources.GetObject("label1.Image");
+            label1.ImageAlign = ContentAlignment.BottomCenter;
+            label1.Location = new Point(976, 368);
+            label1.Name = "label1";
+            label1.Size = new Size(130, 23);
+            label1.TabIndex = 21;
+            label1.Text = "Selam naber! ";
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.BackColor = Color.FromArgb(76, 175, 80);
+            btnRefresh.FlatAppearance.BorderSize = 0;
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Font = new Font("Segoe UI", 12F);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.Location = new Point(1137, 12);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(63, 36);
+            btnRefresh.TabIndex = 30;
+            btnRefresh.Text = "🔄 Yenile";
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
+            // checkedListBox1
+            // 
+            checkedListBox1.BackColor = Color.DarkSeaGreen;
+            checkedListBox1.BorderStyle = BorderStyle.None;
+            checkedListBox1.FormattingEnabled = true;
+            checkedListBox1.Location = new Point(24, 585);
+            checkedListBox1.Name = "checkedListBox1";
+            checkedListBox1.Size = new Size(164, 162);
+            checkedListBox1.TabIndex = 25;
             // 
             // picWateringCan
             // 
@@ -216,14 +348,6 @@ namespace GreenGuard.Forms
             button4.TabIndex = 4;
             button4.Text = "button4";
             button4.UseVisualStyleBackColor = false;
-            // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.FromArgb(255, 128, 128);
-            textBox1.Location = new Point(480, 488);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(220, 23);
-            textBox1.TabIndex = 2;
             // 
             // button14
             // 
@@ -358,6 +482,28 @@ namespace GreenGuard.Forms
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(916, 351);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(254, 247);
+            pictureBox1.TabIndex = 22;
+            pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
+            pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox2.BorderStyle = BorderStyle.Fixed3D;
+            pictureBox2.Location = new Point(15, 549);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(184, 211);
+            pictureBox2.TabIndex = 26;
+            pictureBox2.TabStop = false;
+            // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -373,9 +519,13 @@ namespace GreenGuard.Forms
             Load += DashboardForm_Load;
             Resize += DashboardForm_Resize;
             panelTopBar.ResumeLayout(false);
+            panelTopBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             panelMain.ResumeLayout(false);
             panelMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picWateringCan).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -404,7 +554,17 @@ namespace GreenGuard.Forms
         private Button button6;
         private Button button5;
         private Button button4;
-        private TextBox textBox1;
         private PictureBox picWateringCan;
+        private PictureBox pictureBox1;
+        private CheckedListBox checkedListBox1;
+        private PictureBox pictureBox2;
+        private Button button16;
+        private Button button15;
+        private Button button17;
+        private Label label2;
+        private Label label1;
+        private Label label3;
+        private PictureBox pictureBox3;
+        private Button btnRefresh;
     }
 }

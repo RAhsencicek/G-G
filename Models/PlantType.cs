@@ -12,7 +12,8 @@ namespace GreenGuard.Models
         
         // Optimal bakım değerleri
         public int OptimalWateringDays { get; set; }    // Kaç günde bir sulanmalı
-        public int OptimalFertilizingDays { get; set; } // Kaç günde bir gübrelenmelİ
+        public int OptimalFertilizingDays { get; set; } // Kaç günde bir gübrelenmeli
+        public int OptimalPruningDays { get; set; }     // Kaç günde bir budanmalı
         public string SunlightNeed { get; set; } = string.Empty;   // Az, Orta, Çok
         public int MinTemperature { get; set; }         // Minimum sıcaklık (°C)
         public int MaxTemperature { get; set; }         // Maksimum sıcaklık (°C)
